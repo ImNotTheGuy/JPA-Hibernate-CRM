@@ -12,9 +12,10 @@ public class EntityManagerSingleton {
 
         if (entityManager == null){
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("crm");
-            EntityManager entityManager = emf.createEntityManager();
+            entityManager = emf.createEntityManager();
         }
 
         return entityManager;
+
     }
 }
