@@ -1,4 +1,4 @@
-package org.example.hibernate;
+package org.example.jpa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,14 +8,13 @@ public class EntityManagerSingleton {
 
     private static EntityManager entityManager;
 
-    public static EntityManager getEntityManager(){
+    public static EntityManager getEntityManager() {
 
-        if (entityManager == null){
+        if(entityManager == null) {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("crm");
             entityManager = emf.createEntityManager();
         }
 
         return entityManager;
-
     }
 }

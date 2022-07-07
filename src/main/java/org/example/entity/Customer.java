@@ -11,33 +11,27 @@ public class Customer {
     private Long id;
 
     private String address;
+    private String city;
+    @Column(name="company_name")
     private String companyName;
     private String country;
     private String email;
+    @Column(name="first_name")
     private String firstName;
+    @Column(name="last_name")
     private String lastName;
     private String phone;
+    @Column(name="zip_code")
     private String zipCode;
-    private String city;
     private int state;
 
-    public Customer() {
+    public Customer(){
 
     }
-
-    public Customer(Long id, String address, String companyName, String country, String email, String firstName, String lastName, String phone, String zipCode, String city, int state) {
-        this.id = id;
-        this.address = address;
-        this.companyName = companyName;
-        this.country = country;
-        this.email = email;
+    public Customer(String firstName){
         this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.zipCode = zipCode;
-        this.city = city;
-        this.state = state;
     }
+
 
     public Long getId() {
         return id;
@@ -53,6 +47,14 @@ public class Customer {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getCompanyName() {
@@ -111,14 +113,6 @@ public class Customer {
         this.zipCode = zipCode;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public int getState() {
         return state;
     }
@@ -126,6 +120,4 @@ public class Customer {
     public void setState(int state) {
         this.state = state;
     }
-
-
 }
