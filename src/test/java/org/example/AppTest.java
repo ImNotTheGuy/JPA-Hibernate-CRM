@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.dao.CustomerDAO;
+import org.example.dao.CustomerDao;
 import org.example.entity.Customer;
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ public class AppTest
         Customer customer = new Customer();
         customer.setFirstName("Alain");
         customer.setLastName("Delon");
-        CustomerDAO.create(customer);
+        CustomerDao.create(customer);
 
         assertTrue( true );
     }
@@ -26,40 +26,50 @@ public class AppTest
         Customer customer = new Customer();
         customer.setFirstName("Alain");
         customer.setLastName("Delon");
-        CustomerDAO.create(customer);
+        CustomerDao.create(customer);
 
-        Customer customer1 = CustomerDAO.findById(customer.getId());
+        Customer customer1 = CustomerDao.findById(customer.getId());
         assertEquals("Alain", customer1.getFirstName());
     }
 
     @Test
     public void dontFindById() {
-        Customer customer = CustomerDAO.findById(5);
+        Customer customer = CustomerDao.findById(5);
         assertNull(customer);
     }
 
     @Test
     public void findAll() {
 
-        CustomerDAO.create(new Customer("Marie"));
-        CustomerDAO.create(new Customer("Michel"));
-        CustomerDAO.create(new Customer("Alex"));
+        CustomerDao.create(new Customer("Marie"));
+        CustomerDao.create(new Customer("Michel"));
+        CustomerDao.create(new Customer("Alex"));
 
-        List<Customer> customers = CustomerDAO.findAll();
+        List<Customer> customers = CustomerDao.findAll();
         assertEquals(3, customers.size());
     }
 
     @Test
     public void deleteCustomer(){
         Customer marie = new Customer("Marie");
-        CustomerDAO.create(marie);
+        CustomerDao.create(marie);
 
-        List<Customer> customers = CustomerDAO.findAll();
+        List<Customer> customers = CustomerDao.findAll();
         assertEquals(1, customers.size());
 
-        CustomerDAO.delete(marie);
+        CustomerDao.delete(marie);
 
-        customers = CustomerDAO.findAll();
+        customers = CustomerDao.findAll();
         assertEquals(0, customers.size());
+    }
+
+    @Test
+    public void deleteCustomerById(){
+        Customer customer = new Customer();
+        customer = CustomerDao.findById(13L);
+
+        CustomerDao.deleteCustomerById(13L);
+        assertNull(CustomerDao.findById(13L));
+
     }
 }

@@ -8,7 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import java.util.List;
 
-public class CustomerDAO {
+public class CustomerDao {
 
     public static void create(Customer customerToCreate) {
         EntityManager entityManager = EntityManagerSingleton.getEntityManager();
@@ -41,5 +41,12 @@ public class CustomerDAO {
         tx.begin();
         entityManager.remove(customer);
         tx.commit();
+    }
+
+    public static void deleteCustomerById(long id) {
+        EntityManager entityManager = EntityManagerSingleton.getEntityManager();
+
+        Customer customer = entityManager.find(Customer.class, id);
+        entityManager.remove(customer);
     }
 }
